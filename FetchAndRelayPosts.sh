@@ -36,7 +36,7 @@ function read_settings {
 
 function fetch_posts {
 	# Run toot search and extract URIs from statuses
-	uris=$("${toot_path}" --as "${mastodon_user}" search --json "${search_string}" | jq -r '.statuses[]?.uri')
+	uris=$("${toot_path}" --as "${mastodon_user}" search --limit 40 --json "${search_string}" | jq -r '.statuses[]?.uri')
 
 	# Loop through each URI and run curl command
 	while IFS= read -r uri; do
